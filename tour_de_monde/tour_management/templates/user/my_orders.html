@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" href="../../static/css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="../../static/css/templatemo-style.css">
+
+</head>
+
+    <body>
+        <div class="tm-main-content" id="top">
+            <div class="tm-top-bar-bg"></div>              
+            <div class="tm-top-bar">
+                <div class="container">
+                    <div class="row">
+                        <nav class="navbar navbar-expand-lg narbar-light">
+                            <a class="navbar-brand mr-auto" href="#">
+                                <img src="img/logo.png" alt="Site logo">
+                                Tour de Monde
+                            </a>
+                            <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.flight_booking') }}" class="nav-link">Flights</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.hotel_booking') }}" class="nav-link">Hotels</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.my_orders') }}" class="nav-link">My Orders</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.profile') }}" class="nav-link">Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.logout') }}" class="nav-link">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div> 
+
+        <div class="tm-page-wrap mx-auto">
+            <section class="tm-banner">
+                <div class="tm-container-outer tm-banner-bg">
+                    <div class="container">
+
+                        <div class="row tm-banner-row tm-banner-row-header">
+                            <div class="col-xs-12">
+                                <div class="tm-banner-header">
+                                    <h1 class="text-uppercase tm-banner-title">Let's begin</h1>
+                                    <img src="../../static/img/dots-3.png" alt="Dots">
+                                    <p class="tm-banner-subtitle">We assist you to choose the best.</p>
+                                    <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>       
+                                </div>    
+                            </div>  <!-- col-xs-12 -->                      
+                        </div> <!-- row -->
+                        <div class="row tm-banner-row" id="tm-section-search">
+
+                            <form action="" method="POST" class="tm-search-form tm-section-pad-2">
+                                {{ form.hidden_tag() }}
+
+
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                        <!-- <label for="inputCheckIn">Check In Date</label>
+                                        <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Check In"> -->
+                                        {{ form.inputCheckIn.label(for="inputCheckIn") }}
+                                            {% if form.inputCheckIn.errors %}
+                                                {{ form.inputCheckIn(class="form-control is-invalid", id="inputCheckIn", placeholder="inputCheckIn ") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.inputCheckIn.errors %}
+                                                    <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.inputCheckIn(class="form-control", id="inputCheckIn", placeholder="inputCheckIn") }}
+                                            {% endif %}
+                                    </div>
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                        <!-- <label for="inputCheckOut">Check Out Date</label>
+                                        <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out"> -->
+                                        {{ form.inputCheckOut.label(for="inputCheckOut") }}
+                                            {% if form.inputCheckOut.errors %}
+                                                {{ form.inputCheckOut(class="form-control is-invalid", id="inputCheckOut", placeholder="inputCheckOut ") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.inputCheckOut.errors %}
+                                                    <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.inputCheckOut(class="form-control", id="inputCheckOut", placeholder="inputCheckOut") }}
+                                            {% endif %}
+                                    </div>
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
+                                        <label for="btnSubmit">&nbsp;</label>
+                                        {{ form.submit(class="btn btn-primary tm-btn tm-btn-search text-uppercase", id="btnSubmit", type="submit") }}
+                                    
+                                    </div>
+                                </div>                              
+                            </form>                             
+
+                        </div> <!-- row -->
+                        <div class="tm-banner-overlay"></div>
+                    </div>  <!-- .container -->                   
+                </div>              
+            </section>
+            
+            
+            <div class="row justify-content-center">
+                {% if items is not none %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Flight Number</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                            <th>Number Of People</th>
+                            <th>Departure Date - Time</th>
+                            <th>Arrival Date - Time</th>
+                            <th>Cost - Per Person</th>
+                            <th>Book Ticket</th>
+                        </tr>
+                        </thead>
+                        {% for item in items %}
+                            
+                            <tbody>
+                                
+                                <tr>
+                                    
+                                    <td>{{item['flight_number']}}</td>
+                                    <td>{{item['source']}}</td>
+                                    <td>{{item['destination']}}</td>
+                                    <td>{{item['no_of_people']}}</td>
+                                    <td>{{item['departure_date']}} - {{item['departure_time']}}</td>
+                                    <td>{{item['arrival_date']}} - {{item['arrival_time']}}</td>
+                                    <td>{{item['cost']}}</td>
+                                    <td><a class="" href="{{ url_for('user.flight_booking_confirm', flight_number=item['flight_number'], source=item['source'], destination=item['destination'], no_of_people=item['no_of_people'], departure_date=item['departure_date'], departure_time=item['departure_time'], arrival_date=item['arrival_date'], arrival_time=item['arrival_time'], cost=item['cost'], _external=True) }}">Book</a></td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                                
+                        {% endfor %}
+                </table>
+                {% else %}
+                    {% endif %}
+            </div>
+            <div class="tm-container-outer" id="tm-section-3">
+
+            <footer class="tm-container-outer">
+                <p class="mb-0">Copyright © <span class="tm-current-year">2022</span> Tour de Monde | All Rights Reserved</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="../../static/js/jquery-1.11.3.min.js"></script> 
+    <script src="../../static/js/popper.min.js"></script>       
+    <script src="../../static/js/bootstrap.min.js"></script>       
+    <script src="../../static/js/datepicker.min.js"></script>             
+    <script src="../../static/js/jquery.singlePageNav.min.js"></script>   
+    <script src="../../static/slick/slick.min.js"></script> 
+    <script src="../../static/js/jquery.scrollTo.min.js"></script>
+
+    <script> 
+        var map = '';
+        var center;
+
+        function initialize() {
+            var mapOptions = {
+                zoom: 16,
+                center: new google.maps.LatLng(37.769725, -122.462154),
+                scrollwheel: false
+            };
+
+            map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
+
+            google.maps.event.addDomListener(map, 'idle', function() {
+              calculateCenter();
+          });
+
+            google.maps.event.addDomListener(window, 'resize', function() {
+              map.setCenter(center);
+          });
+        }
+
+        function calculateCenter() {
+            center = map.getCenter();
+        }
+
+        function loadGoogleMap(){
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVWt4rJfibfsEDvcuaChUaZRS5NXey1Cs&v=3.exp&sensor=false&' + 'callback=initialize';
+            document.body.appendChild(script);
+        } 
+
+        $(function(){
+
+            // Change top navbar on scroll
+            $(window).on("scroll", function() {
+                if($(window).scrollTop() > 100) {
+                    $(".tm-top-bar").addClass("active");
+                } else {                    
+                 $(".tm-top-bar").removeClass("active");
+                }
+            });
+
+            $('.tm-down-arrow-link').click(function(){
+                $.scrollTo('#tm-section-search', 300, {easing:'linear'});
+            });
+
+            // Date Picker in Search form
+            var pickerCheckIn = datepicker('#inputCheckIn');
+            var pickerCheckOut = datepicker('#inputCheckOut');
+
+            // Update nav links on scroll
+            $('#tm-top-bar').singlePageNav({
+                currentClass:'active',
+                offset: 60
+            });
+
+            // Close navbar after clicked
+            $('.nav-link').click(function(){
+                $('#mainNav').removeClass('show');
+            });
+
+            // Slick Carousel
+            $('.tm-slideshow').slick({
+                infinite: true,
+                arrows: true,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+
+            loadGoogleMap();              
+            $('.tm-current-year').text(new Date().getFullYear());       
+        });
+
+    </script>             
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                    Passenger Info - {{current_passenger}} of {{no_of_people}} (We would need The details for one person per room)
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 bg-black">                            
+                                <div class="form-group">
+                                    {{ form.first_name.label(for="first_name") }}
+                                    {% if form.first_name.errors %}
+                                        {{ form.first_name(class="form-control is-invalid", id="first_name", placeholder="First Namee") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.first_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.first_name(class="form-control", id="first_name", placeholder="First Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                <div class="form-group">
+                                    {{ form.last_name.label(for="last_name") }}
+                                    {% if form.last_name.errors %}
+                                        {{ form.last_name(class="form-control is-invalid", id="last_name", placeholder="Last Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.last_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.last_name(class="form-control", id="last_name", placeholder="Last Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                <div class="form-group">
+                                    {{ form.dob.label(for="dob") }}
+                                    {% if form.dob.errors %}
+                                        {{ form.dob(class="form-control is-invalid", id="dob", placeholder="Date Of Birth", type="date") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.dob.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.dob(class="form-control", id="dob", placeholder="Date of Birth", type="date") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                <div class="form-group">
+                                    {{ form.sex.label(for="sex") }}
+                                    {% if form.sex.errors %}
+                                        {{ form.sex(class="form-control is-invalid", id="sex", placeholder="Gender") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.sex.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.sex(class="form-control", id="sex", placeholder="Gender") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.email.label(for="email") }}
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control is-invalid", id="email", placeholder="Email") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control", id="email", placeholder="Email") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Passenger Info</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

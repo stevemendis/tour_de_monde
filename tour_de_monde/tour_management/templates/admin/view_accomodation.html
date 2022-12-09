@@ -1,0 +1,56 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+           
+            <br><br><br>
+            <div class="card">
+                <div class="row justify-content-center">
+
+                    <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        Accomodations
+                    </div>
+                    
+                    <!-- <h2 class="">
+                        <span> Already Present Places</span>
+                    </h3> -->
+                    <h3 class="">
+                </div>
+                <div class="row justify-content-center">
+                    {% if items is not none %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Hotel Name</th>
+                                <th>Address</th>
+                                <th>Place Id</th>
+                                <th>Email</th>
+                                <th>Discount Code</th>
+                                <th>Description</th>
+                                
+                            </tr>
+                            </thead>
+                            {% for item in items %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{item.hotel_name}}</td>
+                                        <td>{{item.address}}</td>
+                                        <td>{{item.place_id}}</td>
+                                        <td>{{item.email}}</td>
+                                        <td>{{item.discount_code}}</td>
+                                        <td>{{item.description}}</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                    </table>
+                    {% else %}
+                        <span> No Data Found</span>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

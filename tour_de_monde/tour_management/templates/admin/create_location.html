@@ -1,0 +1,246 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                    Add Accomodation
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.place_name.label(for="place_name") }}
+                                    {% if form.place_name.errors %}
+                                        {{ form.place_name(class="form-control is-invalid", id="place_name", placeholder="Place Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.place_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.place_name(class="form-control", id="place_name", placeholder="Place Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.name.label(for="name") }}
+                                    {% if form.name.errors %}
+                                        {{ form.name(class="form-control is-invalid", id="name", placeholder="Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.name(class="form-control", id="name", placeholder="Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.season_visit.label(for="season_visit") }}
+                                    {% if form.season_visit.errors %}
+                                        {{ form.season_visit(class="form-control is-invalid", id="season_visit", placeholder="Season Visit") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.season_visit.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.season_visit(class="form-control", id="season_visit", placeholder="Season Visit") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.address.label(for="address") }}
+                                    {% if form.address.errors %}
+                                        {{ form.address(class="form-control is-invalid", id="address", placeholder="Address") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.address.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.address(class="form-control", id="address", placeholder="Address") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.average_review.label(for="average_review") }}
+                                    {% if form.average_review.errors %}
+                                        {{ form.average_review(class="form-control is-invalid", id="average_review", placeholder="Average Review") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.average_review.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.average_review(class="form-control", id="average_review", placeholder="Average Review") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.average_time.label(for="average_time") }}
+                                    {% if form.average_time.errors %}
+                                        {{ form.average_time(class="form-control is-invalid", id="average_time", placeholder="Average Time") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.average_time.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.average_time(class="form-control", id="average_time", placeholder="Average Time") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.contact_email.label(for="contact_email") }}
+                                    {% if form.contact_email.errors %}
+                                        {{ form.contact_email(class="form-control is-invalid", id="contact_email", placeholder="Contact Email") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.contact_email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.contact_email(class="form-control", id="contact_email", placeholder="Contact Email") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.contact_phone.label(for="contact_phone") }}
+                                    {% if form.contact_phone.errors %}
+                                        {{ form.contact_phone(class="form-control is-invalid", id="contact_phone", placeholder="Contact Phone") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.contact_phone.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.contact_phone(class="form-control", id="contact_phone", placeholder="Contact Phone") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.owner_name.label(for="owner_name") }}
+                                    {% if form.owner_name.errors %}
+                                        {{ form.owner_name(class="form-control is-invalid", id="owner_name", placeholder="Owner Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.owner_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.owner_name(class="form-control", id="owner_name", placeholder="Owner Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.description.label(for="description") }}
+                                    {% if form.description.errors %}
+                                        {{ form.description(class="form-control is-invalid", id="description", placeholder="Description") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.description.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.description(class="form-control", id="description", placeholder="Description") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.cost.label(for="cost") }}
+                                    {% if form.cost.errors %}
+                                        {{ form.cost(class="form-control is-invalid", id="cost", placeholder="Cost") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.cost.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.cost(class="form-control", id="cost", placeholder="Cost") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+  
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+           
+
+
+            <br><br><br>
+    <div class="card">
+    <div class="row justify-content-center">
+
+        <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+            Already Present Places
+        </div>
+        
+        <!-- <h2 class="">
+            <span> Already Present Places</span>
+        </h3> -->
+        <h3 class="">
+    </div>
+    <div class="row justify-content-center">
+        {% if items is not none %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Place</th>
+                    <th>Code</th>
+                    
+                </tr>
+                </thead>
+                {% for item in items %}
+                    <tbody>
+                        <tr>
+                            <td>{{item.place}}</td>
+                            <td>{{item.code}}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {% else %}
+            <span> No Data Found</span>
+        {% endif %}
+    </div>
+</div>
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,163 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                    Add Accomodation
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.place_name.label(for="place_name") }}
+                                    {% if form.place_name.errors %}
+                                        {{ form.place_name(class="form-control is-invalid", id="place_name", placeholder="Place Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.place_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.place_name(class="form-control", id="place_name", placeholder="Place Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.hotel_name.label(for="hotel_name") }}
+                                    {% if form.hotel_name.errors %}
+                                        {{ form.hotel_name(class="form-control is-invalid", id="hotel_name", placeholder="Hotel Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.hotel_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.hotel_name(class="form-control", id="hotel_name", placeholder="Hotel Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.address.label(for="address") }}
+                                    {% if form.address.errors %}
+                                        {{ form.address(class="form-control is-invalid", id="address", placeholder="Address") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.address.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.address(class="form-control", id="address", placeholder="Address") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.discount_code.label(for="discount_code") }}
+                                    {% if form.discount_code.errors %}
+                                        {{ form.discount_code(class="form-control is-invalid", id="discount_code", placeholder="Discount Code") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.discount_code.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.discount_code(class="form-control", id="discount_code", placeholder="Discount Code") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.description.label(for="description") }}
+                                    {% if form.description.errors %}
+                                        {{ form.description(class="form-control is-invalid", id="description", placeholder="Description") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.description.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.description(class="form-control", id="description", placeholder="Description") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.email.label(for="email") }}
+                                    {% if form.email.errors %}
+                                        {{ form.email(class="form-control is-invalid", id="email", placeholder="Email") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class="form-control", id="email", placeholder="Email") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+  
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+           
+
+            <br><br><br>
+            <div class="card">
+                <div class="row justify-content-center">
+
+                    <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        Already Present Places
+                    </div>
+                    
+                    <!-- <h2 class="">
+                        <span> Already Present Places</span>
+                    </h3> -->
+                    <h3 class="">
+                </div>
+                <div class="row justify-content-center">
+                    {% if place is not none %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Place</th>
+                                <th>Code</th>
+                                
+                            </tr>
+                            </thead>
+                            {% for item in place %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{item.place}}</td>
+                                        <td>{{item.code}}</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                    </table>
+                    {% else %}
+                        <span> No Data Found</span>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

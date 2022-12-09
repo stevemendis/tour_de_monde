@@ -1,0 +1,130 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                    Add Accomodation
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.flight_id.label(for="flight_id") }}
+                                    {% if form.flight_id.errors %}
+                                        {{ form.flight_id(class="form-control is-invalid", id="flight_id", placeholder="Flight Id") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.flight_id.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.flight_id(class="form-control", id="flight_id", placeholder="Flight Id") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.type.label(for="type") }}
+                                    {% if form.type.errors %}
+                                        {{ form.type(class="form-control is-invalid", id="type", placeholder="Type") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.type.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.type(class="form-control", id="type", placeholder="Type") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.min_cost.label(for="min_cost") }}
+                                    {% if form.min_cost.errors %}
+                                        {{ form.min_cost(class="form-control is-invalid", id="min_cost", placeholder="Minimum Cost") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.min_cost.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.min_cost(class="form-control", id="min_cost", placeholder="Minimum Cost") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.max_cost.label(for="max_cost") }}
+                                    {% if form.max_cost.errors %}
+                                        {{ form.max_cost(class="form-control is-invalid", id="max_cost", placeholder="Maximum Cost") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.max_cost.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.max_cost(class="form-control", id="max_cost", placeholder="Maximum Cost") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+  
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+           
+            
+            <br><br><br>
+            <div class="card">
+                <div class="row justify-content-center">
+            
+                    <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        Already Present Flights
+                    </div>
+                    
+                    <h3 class="">
+                </div>
+            
+                <div class="row justify-content-center">
+                    {% if items is not none %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Flight Number</th>
+                                
+                            </tr>
+                            </thead>
+                            {% for item in items %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.flight_number}}</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                    </table>
+                    {% else %}
+                        <span> No Data Found</span>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

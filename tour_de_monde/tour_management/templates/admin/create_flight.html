@@ -1,0 +1,134 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                    Add Accomodation
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.flight_name.label(for="flight_name") }}
+                                    {% if form.flight_name.errors %}
+                                        {{ form.flight_name(class="form-control is-invalid", id="flight_name", placeholder="Flight Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.flight_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.flight_name(class="form-control", id="flight_name", placeholder="Flight Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-check">
+                                    {% if form.international.errors %}
+                                    {{ form.international(id="international", class="form-check-input is-invalid") }}
+                                    {{ form.international.label(for="international", class="form-check-label") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.international.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.international(id="international", class="form-check-input") }}
+                                    {{ form.international.label(for="international", class="form-check-label") }}
+                                {% endif %}
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="form-check">
+                                    {% if form.domestic.errors %}
+                                    {{ form.domestic(id="domestic", class="form-check-input is-invalid") }}
+                                    {{ form.domestic.label(for="domestic", class="form-check-label") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.domestic.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.domestic(id="domestic", class="form-check-input") }}
+                                    {{ form.domestic.label(for="domestic", class="form-check-label") }}
+                                {% endif %}
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    {{ form.discount_code.label(for="discount_code") }}
+                                    {% if form.discount_code.errors %}
+                                        {{ form.discount_code(class="form-control is-invalid", id="discount_code", placeholder="Discount Code") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.discount_code.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.discount_code(class="form-control", id="discount_code", placeholder="Discount Code") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+  
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            
+            <br><br><br>
+            <div class="card">
+                <div class="row justify-content-center">
+            
+                    <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        Already Present Flights
+                    </div>
+                    
+                    <h3 class="">
+                </div>
+            
+                <div class="row justify-content-center">
+                    {% if items is not none %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Flight Name</th>
+                                <th>international</th>
+                                <th>Domestic</th>
+                                
+                            </tr>
+                            </thead>
+                            {% for item in items %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{item.flight_name}}</td>
+                                        <td>{{item.international}}</td>
+                                        <td>{{item.domestic}}</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                    </table>
+                    {% else %}
+                        <span> No Data Found</span>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

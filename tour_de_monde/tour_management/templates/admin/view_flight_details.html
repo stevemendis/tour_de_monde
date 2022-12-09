@@ -1,0 +1,56 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+           
+            <br><br><br>
+            <div class="card">
+                <div class="row justify-content-center">
+
+                    <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        Flight Details
+                    </div>
+                    
+                    <!-- <h2 class="">
+                        <span> Already Present Places</span>
+                    </h3> -->
+                    <h3 class="">
+                </div>
+                <div class="row justify-content-center">
+                    {% if items is not none %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Flight Number</th>
+                                <th>Departure Date</th>
+                                <th>Arrival Date</th>
+                                <th>Number of Seats</th>
+                                <th>Source</th>
+                                <th>Destination</th>
+                                
+                            </tr>
+                            </thead>
+                            {% for item in items %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{item.flight_number}}</td>
+                                        <td>{{item.departure_date_time}}</td>
+                                        <td>{{item.arrival_date_time}}</td>
+                                        <td>{{item.number_of_seats}}</td>
+                                        <td>{{item.source}}</td>
+                                        <td>{{item.destination}}</td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                    </table>
+                    {% else %}
+                        <span> No Data Found</span>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
