@@ -105,13 +105,9 @@ class ResendValidateotpForm(FlaskForm):
 class DashboardForm(FlaskForm):
     source = StringField('Choose your source', [DataRequired()])
     destination = StringField('Choose your destination', [DataRequired()])
-    no_of_rooms = SelectField('How many rooms?' , choices=[('1','1 Room'), ('2','2 Rooms'), ('3','3 Rooms'), ('4','4 Rooms'), ('5','5 Rooms')],validators=[InputRequired()])
-    adults = SelectField('Adults' , choices=[('1','1'), ('2','2'), ('3','3'), ('4','4'), ('5','5'), ('6','6'), ('7','7'), ('8','8'), ('9','9'), ('10','10')],validators=[InputRequired()])
-    children = SelectField('Children' , choices=[('1','1'), ('2','2'), ('3','3'), ('4','4'), ('5','5')],validators=[InputRequired()])
     inputCheckIn = DateField('Check In Date', validators=[InputRequired()])
     inputCheckOut = DateField('Check Out Date', validators=[InputRequired()])
-    international = BooleanField('International Travel ?')
-    submit = SubmitField('Submit')
+    # submit = SubmitField('Submit')
 
     def validate_source(self, source):
         org = Place.query.filter_by(place=source.data.lower()).first()
@@ -129,8 +125,8 @@ class FlightBookingForm(FlaskForm):
     destination = StringField('Choose your destination', [DataRequired()])
     adults = SelectField('Adults' , choices=[('1','1'), ('2','2'), ('3','3'), ('4','4'), ('5','5'), ('6','6'), ('7','7'), ('8','8'), ('9','9'), ('10','10')],validators=[InputRequired()])
     children = SelectField('Children' , choices=[('1','1'), ('2','2'), ('3','3'), ('4','4'), ('5','5')],validators=[InputRequired()])
-    inputCheckIn = DateField('Check In Date', format='%Y-%m-%d', validators=[InputRequired()])
-    inputCheckOut = DateField('Check Out Date', format='%Y-%m-%d', validators=[InputRequired()])
+    departure_date = DateField('Departure Date', format='%Y-%m-%d', validators=[InputRequired()])
+    arrival_date = DateField('Arrival Date', format='%Y-%m-%d', validators=[InputRequired()])
     cabin_class = SelectField('Cabin Class' , choices=[('economy','Economy'), ('premium','Premium'), ('business','Business'), ('first','First')],validators=[InputRequired()])
     submit = SubmitField('Submit')
 
@@ -161,8 +157,8 @@ class HotelBookingForm(FlaskForm):
             raise ValidationError('Sorry we do not serve that location yet')
     
 class MyordersForm(FlaskForm):
-    inputCheckIn = DateField('Check In Date', format='%m/%d/%y', validators=[InputRequired()])
-    inputCheckOut = DateField('Check Out Date', format='%m/%d/%y', validators=[InputRequired()])
+    username = StringField('Enter Your Username', validators=[
+        DataRequired(), Length(min=2, max=255)])
     submit = SubmitField('Submit')
 
 
@@ -193,3 +189,38 @@ class PassengerInfoHotel(FlaskForm):
     email = StringField('Email', validators=[Email()])
     
     submit = SubmitField('Next Passenger')
+
+
+
+class LocationBookingForm(FlaskForm):
+    source = StringField('Choose your source', [DataRequired()])
+    activity_types = StringField('Choose your Activity Type')
+    adults = SelectField('Adults' , choices=[('1','1'), ('2','2'), ('3','3'), ('4','4'), ('5','5'), ('6','6'), ('7','7'), ('8','8'), ('9','9'), ('10','10')],validators=[InputRequired()])
+    children = SelectField('Children' , choices=[('1','1'), ('2','2'), ('3','3'), ('4','4'), ('5','5')],validators=[InputRequired()])
+    inputCheckIn = DateField('Check In Date', format='%Y-%m-%d', validators=[InputRequired()])
+    inputCheckOut = DateField('Check Out Date', format='%Y-%m-%d', validators=[InputRequired()])
+    submit = SubmitField('Submit')
+
+    def validate_source(self, source):
+        org = Place.query.filter_by(place=source.data.lower()).first()
+        
+        if org is None or org == []:
+            raise ValidationError('Sorry we do not serve that location yet')
+
+
+class PaymentsForm(FlaskForm):
+    
+    first_name = StringField('First Name', [DataRequired()])
+    last_name = StringField('Last Name', [DataRequired()])
+    username = StringField('Username', [DataRequired()])
+    address_1 = StringField('Address Line 1', [DataRequired()])
+    address_2 = StringField('Address Line 2')
+    email = StringField('Email', validators=[Email()])
+    country = SelectField('Country' , choices=[('1','United States')],validators=[InputRequired()])
+    state = SelectField('State' , choices=[('1','Florida'), ('2','Indiana'), ('3','Texas')],validators=[InputRequired()])
+    zip_code = StringField('Zip Code', [DataRequired()])
+    credit_card = StringField('Credit Card', [DataRequired()])
+    name_on_card = StringField('Name On Card', [DataRequired()])
+    expiration_date = StringField('Expiration Date', [DataRequired()])
+    cvv_card =  StringField('CVV', [DataRequired()])
+    submit = SubmitField('Submit')

@@ -1,2 +1,5 @@
 Please click the link below to activate the account.
 {{ link }}
+
+OTP has been sent over the mail
+Mobile OTP : {{ otp }}

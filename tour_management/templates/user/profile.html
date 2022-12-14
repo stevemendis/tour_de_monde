@@ -21,8 +21,8 @@
               <a href="#">
                   <img src="../../static/img/profile.webp" alt="">
               </a>
-              <h1>Sahil Kotian</h1>
-              <p>skotian@iu.edu</p>
+              <h1>{{org.first_name}} {{org.last_name}}</h1>
+              <p>{{org.email}}</p>
           </div>
 
           <ul class="nav nav-pills nav-stacked">
@@ -41,25 +41,25 @@
               <h1>Bio Graph</h1>
               <div class="row">
                   <div class="bio-row">
-                      <p><span>First Name </span>:  Sahil</p>
+                      <p><span>First Name </span>:  {{org.first_name}}</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Last Name </span>:  Kotian</p>
+                      <p><span>Last Name </span>:  {{org.last_name}}</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Phone Number </span>:  (987)-654-3210</p>
+                      <p><span>Phone Number </span>:  {{org.phone_number}}</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Date of Birth</span>:  4 July 1999</p>
+                      <p><span>Date of Birth</span>:  {{org.dob}}</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Gender </span>:  Male</p>
+                      <p><span>Gender </span>:  {{org.sex}}</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Username </span>:  heelsahil</p>
+                      <p><span>Username </span>:  {{org.username}}</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Email </span>:  skotian@iu.edu</p>
+                      <p><span>Email </span>:  {{org.email}}</p>
                   </div>
                   <div class="bio-row">
                     <p><span>Password </span>:  **********</p>

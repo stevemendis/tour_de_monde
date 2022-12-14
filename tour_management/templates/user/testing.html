@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>FormWizard_v1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+
+    <link href="{{ url_for('static', filename = 'css/material-design-iconic-font.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename = 'css/signin.css') }}" rel="stylesheet">
+
+    <meta name="robots" content="noindex, follow">
+    <script nonce="39a8828c-50ba-4ab8-a6f3-0d9637d5c1ff">
+    (function(w, d) {
+        !function(cM, cN, cO, cP) {
+            cM.zarazData = cM.zarazData || {};
+            cM.zarazData.executed = [];
+            cM.zaraz = {
+                deferred: [],
+                listeners: []
+            };
+            cM.zaraz.q = [];
+            cM.zaraz._f = function(cQ) {
+                return function() {
+                    var cR = Array.prototype.slice.call(arguments);
+                    cM.zaraz.q.push({
+                        m: cQ,
+                        a: cR
+                    })
+                }
+            };
+            for (const cS of ["track", "set", "debug"])
+                cM.zaraz[cS] = cM.zaraz._f(cS);
+            cM.zaraz.init = () => {
+                var cT = cN.getElementsByTagName(cP)[0],
+                    cU = cN.createElement(cP),
+                    cV = cN.getElementsByTagName("title")[0];
+                cV && (cM.zarazData.t = cN.getElementsByTagName("title")[0].text);
+                cM.zarazData.x = Math.random();
+                cM.zarazData.w = cM.screen.width;
+                cM.zarazData.h = cM.screen.height;
+                cM.zarazData.j = cM.innerHeight;
+                cM.zarazData.e = cM.innerWidth;
+                cM.zarazData.l = cM.location.href;
+                cM.zarazData.r = cN.referrer;
+                cM.zarazData.k = cM.screen.colorDepth;
+                cM.zarazData.n = cN.characterSet;
+                cM.zarazData.o = (new Date).getTimezoneOffset();
+                if (cM.dataLayer)
+                    for (const cZ of Object.entries(Object.entries(dataLayer).reduce(((c_, da) => ({
+                        ...c_[1],
+                        ...da[1]
+                    })))))
+                        zaraz.set(cZ[0], cZ[1], {
+                            scope: "page"
+                        });
+                cM.zarazData.q = [];
+                for (; cM.zaraz.q.length;) {
+                    const db = cM.zaraz.q.shift();
+                    cM.zarazData.q.push(db)
+                }
+                cU.defer = !0;
+                for (const dc of [localStorage, sessionStorage])
+                    Object.keys(dc || {}).filter((de => de.startsWith("_zaraz_"))).forEach((dd => {
+                        try {
+                            cM.zarazData["z_" + dd.slice(7)] = JSON.parse(dc.getItem(dd))
+                        } catch {
+                            cM.zarazData["z_" + dd.slice(7)] = dc.getItem(dd)
+                        }
+                    }));
+                cU.referrerPolicy = "origin";
+                cU.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(cM.zarazData)));
+                cT.parentNode.insertBefore(cU, cT)
+            };
+            ["complete", "interactive"].includes(cN.readyState) ? zaraz.init() : cM.addEventListener("DOMContentLoaded", zaraz.init)
+        }(w, d, 0, "script");
+    })(window, document);
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="" id="wizard">
+
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="../../static/img/form-wizard-1.jpg" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Registration</h3>
+                        </div>
+                        <p>Please fill with your details</p>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="First Name" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Last Name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="Your Email" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Phone Number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="Age" class="form-control">
+                            </div>
+                            <div class="form-holder" style="align-self: flex-end; transform: translateY(4px);">
+                                <div class="checkbox-tick">
+                                    <label class="male">
+                                        <input type="radio" name="gender" value="male" checked>
+                                         Male
+                                        <br>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="female">
+                                        <input type="radio" name="gender" value="female">
+                                         Female
+                                        <br>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox-circle">
+                            <label>
+                                <input type="checkbox" checked>
+                                 Nor again is there anyone who loves or pursues or desires to obtaini.
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="../../static/img/form-wizard-2.jpg" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Registration</h3>
+                        </div>
+                        <p>Please fill with additional info</p>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <input type="text" placeholder="Address" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="City" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Zip Code" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="select">
+                                <div class="form-holder">
+                                    <div class="select-control">Your country</div>
+                                    <i class="zmdi zmdi-caret-down"></i>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="United States">United States</li>
+                                    <li rel="United Kingdom">United Kingdom</li>
+                                    <li rel="Viet Nam">Viet Nam</li>
+                                </ul>
+                            </div>
+                            <div class="form-holder"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="../../static/img/form-wizard-3.jpg" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Registration</h3>
+                        </div>
+                        <p>Send an optional message</p>
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <textarea name="" id="" placeholder="Your messagere here!" class="form-control" style="height: 99px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="checkbox-circle mt-24">
+                            <label>
+                                <input type="checkbox" checked>
+                                 Please accept 
+                                <a href="#">terms and conditions ?</a>
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+
+    <script src="../../static/js1/jquery-3.3.1.min.js"></script>
+    <!-- <script src="../../static/js/signin.js"></script>    -->
+
+    <script src="../../static/js/jquery.steps.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+    <script src="../../static/js/signin.js"></script>   
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+    </script>
+</body>
+</html>

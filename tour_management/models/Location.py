@@ -21,5 +21,6 @@ class Location(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
+
     def __str__(self):
         return 'Location:{}'.format(self.name)

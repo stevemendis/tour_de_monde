@@ -82,8 +82,6 @@
                                 {{ form.hidden_tag() }}
                                 <div class="form-row tm-search-form-row">            
                                     <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
-                                        <!-- <label for="inputCity">Choose Your Source</label> -->
-                                        <!-- <input name="Source" type="text" class="form-control" id="inputCity" placeholder="Type your Source..."> -->
                                         {{ form.source.label(for="source") }}
                                         {% if form.source.errors %}
                                             {{ form.first_name(class="form-control is-invalid", id="source", placeholder="Enter your source... ") }}
@@ -98,41 +96,20 @@
                                     </div>                    
                                     <div class="form-group tm-form-group tm-form-group-1">                                    
                                         <div class="form-group tm-form-group tm-form-group-pad tm-form-group-2">
-                                            <!-- <label for="inputRoom">How many rooms?</label>
-                                            <select name="room" class="form-control tm-select" id="inputRoom">
-                                                <option value="1" selected>1 Room</option>
-                                                <option value="2">2 Rooms</option>
-                                                <option value="3">3 Rooms</option>
-                                                <option value="4">4 Rooms</option>
-                                                <option value="5">5 Rooms</option>
-                                            </select> -->
-                                            {{ form.no_of_rooms.label(for="no_of_rooms") }}
-                                            {% if form.no_of_rooms.errors %}
-                                                {{ form.no_of_rooms(class="form-control is-invalid", id="no_of_rooms", placeholder="How many rooms? ") }}
+                                            {{ form.activity_types.label(for="activity_types") }}
+                                            {% if form.activity_types.errors %}
+                                                {{ form.activity_types(class="form-control is-invalid", id="activity_types", placeholder="Choose your Activity Type ") }}
                                                 <div class="invalid-feedback">
-                                                    {% for error in form.no_of_rooms.errors %}
+                                                    {% for error in form.activity_types.errors %}
                                                     <span>{{ error }}</span>
                                                     {% endfor %}
                                                 </div>
                                             {% else %}
-                                                {{ form.no_of_rooms(class="form-control", id="no_of_rooms", placeholder="How many rooms?") }}
+                                                {{ form.activity_types(class="form-control", id="activity_types", placeholder="Choose your Activity Type ") }}
                                             {% endif %} 
                                                                                    
                                         </div>
                                         <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">                                       
-                                            <!-- <label for="inputAdult">Adult</label>     
-                                            <select name="adult" class="form-control tm-select" id="inputAdult">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select> -->
                                             {{ form.adults.label(for="adults") }}
                                             {% if form.adults.errors %}
                                                 {{ form.adults(class="form-control is-invalid", id="adults", placeholder="Adults ") }}
@@ -146,14 +123,6 @@
                                             {% endif %}                                         
                                         </div>
                                         <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
-
-                                            <!-- <label for="inputChildren">Children</label>                                            
-                                            <select name="children" class="form-control tm-select" id="inputChildren">
-                                            	<option value="0" selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>     -->
                                             {{ form.children.label(for="children") }}
                                             {% if form.children.errors %}
                                                 {{ form.children(class="form-control is-invalid", id="children", placeholder="Children ") }}
@@ -217,16 +186,16 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Hotel Name</th>
-                            <th>Hotel Description</th>
-                            <th>No of Rooms</th>
-                            <th>Room Name - Room ID</th>
-                            <th>Room Description</th>
-                            <th>Rooms Available</th>
-                            <th>Departure Date</th>
-                            <th>Arrival Date</th>
-                            <th>Cost - Per Room</th>
-                            <th>Book Hotel</th>
+                            <th>Location Name</th>
+                            <th>Activity Types</th>
+                            <th>No of People</th>
+                            <th>Cost - Per Person</th>
+                            <th>Season To Visit</th>
+                            <th>Date</th>
+                            <th>Address</th>
+                            <th>Average Review</th>
+                            <th>Average Time</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         {% for item in items %}
@@ -235,16 +204,30 @@
                                 
                                 <tr>
                                     
-                                    <td>{{item['hotel_name']}}</td>
-                                    <td>{{item['description']}}</td>
-                                    <td>{{item['no_of_rooms']}}</td>
-                                    <td>{{item['room_name']}} - {{item['accomodation_details_id']}}</td>
-                                    <td>{{item['room_description']}}</td>
-                                    <td>{{item['rooms_availble']}}</td>
-                                    <td>{{item['start_date']}}</td>
-                                    <td>{{item['end_date']}}</td>
+                                    <td>{{item['location_name']}} - {{item['location_id']}}</td>
+                                    <td>{{item['activity_types']}}</td>
+                                    <td>{{item['no_of_people']}}</td>
                                     <td>{{item['cost']}}</td>
-                                    <td><a class="" href="{{ url_for('user.hotel_booking_confirm', hotel_name=item['hotel_name'], description=item['description'], no_of_rooms=item['no_of_rooms'], room_name=item['room_name'], accomodation_details_id=item['accomodation_details_id'], room_description=item['room_description'], rooms_availble=item['rooms_availble'], start_date=item['start_date'], end_date=item['end_date'], cost=item['cost'], _external=True) }}">Book</a></td>
+                                    <td>{{item['season_visit']}}</td>
+                                    <td>{{item['start_date']}} - {{item['end_date']}}</td>
+                                    <td>{{item['address']}}</td>
+                                    <td>{{item['average_review']}}</td>
+                                    <td>{{item['average_time']}}</td>
+                                    <td>{{item['description']}}</td>
+                                    <td><a class="" href="{{ url_for('user.location_booking_confirm', 
+                                        location_name=item['location_name'],
+                                        no_of_people=item['no_of_people'], 
+                                        cost=item['cost'], 
+                                        season_visit=item['season_visit'], 
+                                        start_date=item['start_date'], 
+                                        address=item['address'], 
+                                        average_review=item['average_review'], 
+                                        average_time=item['average_time'], 
+                                        description=item['description'], 
+                                        end_date=item['end_date'], 
+                                        location_id=item['location_id'], 
+                                        _external=True) }}">Book</a></td>
+                                    
                                     
                                 </tr>
                                 

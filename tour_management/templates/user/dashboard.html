@@ -34,13 +34,16 @@
                             <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link active" href="{{ url_for('user.dashboard') }}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url_for('user.flight_booking') }}" class="nav-link">Flights</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url_for('user.hotel_booking') }}" class="nav-link">Hotels</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.location_booking') }}" class="nav-link">Activities</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url_for('user.my_orders') }}" class="nav-link">My Orders</a>
@@ -97,10 +100,10 @@
 
                             <form action="" method="POST" class="tm-search-form tm-section-pad-2">
                                 {{ form.hidden_tag() }}
-                                <div class="form-row tm-search-form-row">            
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
-                                        <!-- <label for="inputCity">Choose Your Source</label> -->
-                                        <!-- <input name="Source" type="text" class="form-control" id="inputCity" placeholder="Type your Source..."> -->
+                                <div class="form-row tm-search-form-row">                                
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
+                                        <!-- <label for="inputCity">Choose Your Destination</label>
+                                        <input name="destination" type="text" class="form-control" id="inputCity" placeholder="Type your destination..."> -->
                                         {{ form.source.label(for="source") }}
                                         {% if form.source.errors %}
                                             {{ form.source(class="form-control is-invalid", id="source", placeholder="Enter your source... ") }}
@@ -112,149 +115,62 @@
                                         {% else %}
                                             {{ form.source(class="form-control", id="source", placeholder="Enter your source...") }}
                                         {% endif %}
-                                    </div>                    
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                    </div>
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
                                         <!-- <label for="inputCity">Choose Your Destination</label>
-                                        <input name="destination" type="text" class="form-control" id="inputCity" placeholder="Enter your destination..."> -->
+                                        <input name="destination" type="text" class="form-control" id="inputCity" placeholder="Type your destination..."> -->
                                         {{ form.destination.label(for="destination") }}
-                                        {% if form.destination.errors %}
-                                            {{ form.destination(class="form-control is-invalid", id="destination", placeholder="Enter your destination... ") }}
-                                            <div class="invalid-feedback">
-                                                {% for error in form.destination.errors %}
-                                                <span>{{ error }}</span>
-                                                {% endfor %}
-                                            </div>
-                                        {% else %}
-                                            {{ form.destination(class="form-control", id="destination", placeholder="Enter your destination...") }}
-                                        {% endif %}
+            {% if form.destination.errors %}
+                {{ form.destination(class="form-control is-invalid", id="destination", placeholder="Enter your destination... ") }}
+                <div class="invalid-feedback">
+                    {% for error in form.destination.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.destination(class="form-control", id="destination", placeholder="Enter your destination...") }}
+            {% endif %}
                                     </div>
-                                    <div class="form-group tm-form-group tm-form-group-1">                                    
-                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-2">
-                                            <!-- <label for="inputRoom">How many rooms?</label>
-                                            <select name="room" class="form-control tm-select" id="inputRoom">
-                                                <option value="1" selected>1 Room</option>
-                                                <option value="2">2 Rooms</option>
-                                                <option value="3">3 Rooms</option>
-                                                <option value="4">4 Rooms</option>
-                                                <option value="5">5 Rooms</option>
-                                            </select> -->
-                                            {{ form.no_of_rooms.label(for="no_of_rooms") }}
-                                            {% if form.no_of_rooms.errors %}
-                                                {{ form.no_of_rooms(class="form-control is-invalid", id="no_of_rooms", placeholder="How many rooms? ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.no_of_rooms.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.no_of_rooms(class="form-control", id="no_of_rooms", placeholder="How many rooms?") }}
-                                            {% endif %} 
-                                                                                   
-                                        </div>
-                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">                                       
-                                            <!-- <label for="inputAdult">Adult</label>     
-                                            <select name="adult" class="form-control tm-select" id="inputAdult">
-                                                <option value="1" selected>1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                            </select> -->
-                                            {{ form.adults.label(for="adults") }}
-                                            {% if form.adults.errors %}
-                                                {{ form.adults(class="form-control is-invalid", id="adults", placeholder="Adults ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.adults.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.adults(class="form-control", id="adults", placeholder="Adults") }}
-                                            {% endif %}                                         
-                                        </div>
-                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
-
-                                            <!-- <label for="inputChildren">Children</label>                                            
-                                            <select name="children" class="form-control tm-select" id="inputChildren">
-                                            	<option value="0" selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>     -->
-                                            {{ form.children.label(for="children") }}
-                                            {% if form.children.errors %}
-                                                {{ form.children(class="form-control is-invalid", id="children", placeholder="Children ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.children.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.children(class="form-control", id="children", placeholder="Children") }}
-                                            {% endif %}                                       
-                                        </div>
-                                    </div>
+                                    
                                 </div> <!-- form-row -->
                                 <div class="form-row tm-search-form-row">
 
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-4">
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
                                         <!-- <label for="inputCheckIn">Check In Date</label>
                                         <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Check In"> -->
                                         {{ form.inputCheckIn.label(for="inputCheckIn") }}
-                                            {% if form.inputCheckIn.errors %}
-                                                {{ form.inputCheckIn(class="form-control is-invalid", id="inputCheckIn", placeholder="inputCheckIn ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.inputCheckIn.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.inputCheckIn(class="form-control", id="inputCheckIn", placeholder="inputCheckIn") }}
-                                            {% endif %}
+                {% if form.inputCheckIn.errors %}
+                    {{ form.inputCheckIn(class="form-control is-invalid", id="inputCheckIn", placeholder="inputCheckIn ") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.inputCheckIn.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.inputCheckIn(class="form-control", id="inputCheckIn", placeholder="inputCheckIn") }}
+                {% endif %}
                                     </div>
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-4">
+                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
                                         <!-- <label for="inputCheckOut">Check Out Date</label>
                                         <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out"> -->
                                         {{ form.inputCheckOut.label(for="inputCheckOut") }}
-                                            {% if form.inputCheckOut.errors %}
-                                                {{ form.inputCheckOut(class="form-control is-invalid", id="inputCheckOut", placeholder="inputCheckOut ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.inputCheckOut.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.inputCheckOut(class="form-control", id="inputCheckOut", placeholder="inputCheckOut") }}
-                                            {% endif %}
+                {% if form.inputCheckOut.errors %}
+                    {{ form.inputCheckOut(class="form-control is-invalid", id="inputCheckOut", placeholder=" Travel? ") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.inputCheckOut.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.inputCheckOut(class="form-control", id="inputCheckOut", placeholder="International Travel? ") }}
+                {% endif %}
                                     </div>
-
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-4">
-                                        <!-- <label for="inputCheckOut">Check Out Date</label>
-                                        <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out"> -->
-                                        {{ form.international.label(for="international") }}
-                                            {% if form.international.errors %}
-                                                {{ form.international(class="form-control is-invalid", id="international", placeholder="International Travel? ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.international.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.international(class="form-control", id="international", placeholder="International Travel? ") }}
-                                            {% endif %}
-                                    </div>
-
                                     <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
                                         <label for="btnSubmit">&nbsp;</label>
                                         <button type="submit" class="btn btn-primary tm-btn tm-btn-search text-uppercase" id="btnSubmit">Check Availability</button>
                                     </div>
                                 </div>                              
-                            </form>                             
+                            </form> 
 
                         </div> <!-- row -->
                         <div class="tm-banner-overlay"></div>

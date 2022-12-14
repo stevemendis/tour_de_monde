@@ -34,13 +34,16 @@
                             <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
                                 <ul class="navbar-nav ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link active" href="{{ url_for('user.dashboard') }}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url_for('user.flight_booking') }}" class="nav-link">Flights</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url_for('user.hotel_booking') }}" class="nav-link">Hotels</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url_for('user.location_booking') }}" class="nav-link">Activities</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url_for('user.my_orders') }}" class="nav-link">My Orders</a>
@@ -83,7 +86,7 @@
                                         <!-- <input name="Source" type="text" class="form-control" id="inputCity" placeholder="Type your Source..."> -->
                                         {{ form.source.label(for="source") }}
                                         {% if form.source.errors %}
-                                            {{ form.first_name(class="form-control is-invalid", id="source", placeholder="Enter your source... ") }}
+                                            {{ form.source(class="form-control is-invalid", id="source", placeholder="Enter your source... ") }}
                                             <div class="invalid-feedback">
                                                 {% for error in form.source.errors %}
                                                 <span>{{ error }}</span>
@@ -110,7 +113,7 @@
                                     </div>
                             
                                         
-                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-2">
+                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-4">
                                             {{ form.cabin_class.label(for="cabin_class") }}
                                             {% if form.cabin_class.errors %}
                                                 {{ form.cabin_class(class="form-control is-invalid", id="cabin_class", placeholder="Cabin Type ") }}
@@ -127,7 +130,7 @@
 
 
 
-                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">                                       
+                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-4">                                       
                                             {{ form.adults.label(for="adults") }}
                                             {% if form.adults.errors %}
                                                 {{ form.adults(class="form-control is-invalid", id="adults", placeholder="Adults ") }}
@@ -140,7 +143,7 @@
                                                 {{ form.adults(class="form-control", id="adults", placeholder="Adults") }}
                                             {% endif %}                                         
                                         </div>
-                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-4">
                                             {{ form.children.label(for="children") }}
                                             {% if form.children.errors %}
                                                 {{ form.children(class="form-control is-invalid", id="children", placeholder="Children ") }}
@@ -154,45 +157,46 @@
                                             {% endif %}                                       
                                         </div>
                                     </div>
-                                </div> <!-- form-row -->
-                                <div class="form-row tm-search-form-row">
+                                    <div class="form-row tm-search-form-row">
 
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
-                                        <!-- <label for="inputCheckIn">Check In Date</label>
-                                        <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Check In"> -->
-                                        {{ form.inputCheckIn.label(for="inputCheckIn") }}
-                                            {% if form.inputCheckIn.errors %}
-                                                {{ form.inputCheckIn(class="form-control is-invalid", id="inputCheckIn", placeholder="inputCheckIn ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.inputCheckIn.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.inputCheckIn(class="form-control", id="inputCheckIn", placeholder="inputCheckIn") }}
-                                            {% endif %}
-                                    </div>
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
-                                        <!-- <label for="inputCheckOut">Check Out Date</label>
-                                        <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out"> -->
-                                        {{ form.inputCheckOut.label(for="inputCheckOut") }}
-                                            {% if form.inputCheckOut.errors %}
-                                                {{ form.inputCheckOut(class="form-control is-invalid", id="inputCheckOut", placeholder="inputCheckOut ") }}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.inputCheckOut.errors %}
-                                                    <span>{{ error }}</span>
-                                                    {% endfor %}
-                                                </div>
-                                            {% else %}
-                                                {{ form.inputCheckOut(class="form-control", id="inputCheckOut", placeholder="inputCheckOut") }}
-                                            {% endif %}
-                                    </div>
-                                    <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
-                                        <label for="btnSubmit">&nbsp;</label>
-                                        {{ form.submit(class="btn btn-primary tm-btn tm-btn-search text-uppercase", id="btnSubmit", type="submit") }}
-                                    
-                                    </div>
-                                </div>                              
+                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                            <!-- <label for="inputCheckIn">Check In Date</label>
+                                            <input name="check-in" type="text" class="form-control" id="inputCheckIn" placeholder="Check In"> -->
+                                            {{ form.departure_date.label(for="departure_date") }}
+                                                {% if form.departure_date.errors %}
+                                                    {{ form.departure_date(class="form-control is-invalid", id="departure_date", placeholder="Departure Date") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.departure_date.errors %}
+                                                        <span>{{ error }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    {{ form.departure_date(class="form-control", id="departure_date", placeholder="Departure Date") }}
+                                                {% endif %}
+                                        </div>
+                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-3">
+                                            <!-- <label for="inputCheckOut">Check Out Date</label>
+                                            <input name="check-out" type="text" class="form-control" id="inputCheckOut" placeholder="Check Out"> -->
+                                            {{ form.arrival_date.label(for="arrival_date") }}
+                                                {% if form.arrival_date.errors %}
+                                                    {{ form.arrival_date(class="form-control is-invalid", id="arrival_date", placeholder="Arrival Date ") }}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.arrival_date.errors %}
+                                                        <span>{{ error }}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% else %}
+                                                    {{ form.arrival_date(class="form-control", id="arrival_date", placeholder="Arrival Date") }}
+                                                {% endif %}
+                                        </div>
+                                        <div class="form-group tm-form-group tm-form-group-pad tm-form-group-1">
+                                            <label for="btnSubmit">&nbsp;</label>
+                                            {{ form.submit(class="btn btn-primary tm-btn tm-btn-search text-uppercase", id="submit", type="submit") }}
+                                            <!-- <button type="submit" class="btn btn-primary tm-btn tm-btn-search text-uppercase" id="btnSubmit">Check Availability</button> -->
+                                        </div>
+                                    </div> 
+                                </div> <!-- form-row -->
+                                                             
                             </form>                             
 
                         </div> <!-- row -->

@@ -11,10 +11,12 @@ from datetime import datetime
 
 
 
-def send_confirmation_mail(reciever_email, link):
-    html_message = render_template('emails/email_confirmation.html', link=link)
-    text_message = render_template('emails/email_confirmation.txt', link=link)
+def send_confirmation_mail(reciever_email, link, otp):
+    html_message = render_template('emails/email_confirmation.html', link=link, otp=otp)
+    text_message = render_template('emails/email_confirmation.txt', link=link, otp=otp)
     msg = Message('Email Activation link', recipients=[reciever_email])
     msg.body = text_message
     msg.html = html_message
     mail.send(msg)
+
+    

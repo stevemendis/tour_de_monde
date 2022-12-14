@@ -64,3 +64,22 @@ def super_user(func):
             return redirect(url_for('admin.dashboard'))
         return func(*args, **kwargs)
     return decorated_function
+
+
+def send_registration_mail(reciever_email, link):
+    html_message = render_template('emails/registration_confirmation.html', link=link)
+    text_message = render_template('emails/registration_confirmation.txt', link=link)
+    msg = Message('Create account link', recipients=[reciever_email])
+    msg.body = text_message
+    msg.html = html_message
+    mail.send(msg)
+
+
+def send_reset_password_mail(reciever_email, link):
+    html_message = render_template(
+        'emails/reset_password_link.html', link=link)
+    text_message = render_template('emails/reset_password_link.txt', link=link)
+    msg = Message('Reset password link', recipients=[reciever_email])
+    msg.body = text_message
+    msg.html = html_message
+    mail.send(msg)
