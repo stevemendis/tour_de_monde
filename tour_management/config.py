@@ -5,7 +5,7 @@ from datetime import timedelta
 class Config:
     ENV = 'production'
     SECRET_KEY = 'enter a secret key'
-    SQLALCHEMY_DATABASE_URI = "postgresql://postgres:root@localhost:5432/test-db"
+    SQLALCHEMY_DATABASE_URI = "postgresql://root:hZAFIai7B3ZdTjg3TlqXKOiZE0abRRvI@dpg-ceckn1cgqg459gqe33dg-a.oregon-postgres.render.com/testdb_xohv"
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME' , 'tourdemonde101@gmail.com')
